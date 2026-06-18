@@ -50,13 +50,6 @@ Run migrations and seed demo data:
 php artisan migrate:fresh --seed
 ```
 
-
-Run migrations and seed demo data:
-
-```bash
-php artisan migrate:fresh --seed
-```
-
 ## Start The Project
 
 Start the Laravel backend:
