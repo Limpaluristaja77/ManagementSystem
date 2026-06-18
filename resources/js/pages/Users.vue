@@ -71,6 +71,8 @@ const editForm = useForm({
     role_id: 'none',
 });
 
+const statusForm = useForm({});
+
 const openEditDialog = (user: ManagedUser) => {
     editingUser.value = user;
     editForm.clearErrors();
@@ -98,6 +100,18 @@ const submitEditUser = () => {
                 editForm.role_id = 'none';
             },
         });
+};
+
+const deactivateUser = (user: ManagedUser) => {
+    statusForm.post(`/users/${user.id}/deactivate`, {
+        preserveScroll: true,
+    });
+};
+
+const activateUser = (user: ManagedUser) => {
+    statusForm.post(`/users/${user.id}/activate`, {
+        preserveScroll: true,
+    });
 };
 
 defineOptions({
@@ -335,13 +349,13 @@ defineOptions({
                                 <td class="px-3 py-2">
                                     <Badge
                                         :variant="
-                                            user.is_active === false
+                                            user.deactivated_at
                                                 ? 'secondary'
                                                 : 'default'
                                         "
                                     >
                                         {{
-                                            user.is_active === false
+                                            user.deactivated_at
                                                 ? 'Inactive'
                                                 : 'Active'
                                         }}
@@ -359,10 +373,12 @@ defineOptions({
                                             Edit
                                         </Button>
                                         <Button
-                                            v-if="user.is_active === false"
+                                            v-if="user.deactivated_at"
                                             size="sm"
                                             variant="secondary"
                                             type="button"
+                                            :disabled="statusForm.processing"
+                                            @click="activateUser(user)"
                                         >
                                             <RotateCcw />
                                             Activate
@@ -372,6 +388,8 @@ defineOptions({
                                             size="sm"
                                             variant="secondary"
                                             type="button"
+                                            :disabled="statusForm.processing"
+                                            @click="deactivateUser(user)"
                                         >
                                             <UserX />
                                             Deactivate

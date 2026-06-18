@@ -22,7 +22,7 @@ class UserController extends Controller
             'users' => User::query()
                 ->with('roles:id,name')
                 ->orderBy('name')
-                ->get(['id', 'name', 'email']),
+                ->get(['id', 'name', 'email', 'deactivated_at']),
         ]);
     }
 
@@ -68,6 +68,28 @@ class UserController extends Controller
         }
 
         Inertia::flash('toast', ['type' => 'success', 'message' => __('User updated.')]);
+
+        return to_route('users.index');
+    }
+
+    public function deactivate(User $user): RedirectResponse
+    {
+        $user->update([
+            'deactivated_at' => now(),
+        ]);
+
+        Inertia::flash('toast', ['type' => 'success', 'message' => __('User deactivated.')]);
+
+        return to_route('users.index');
+    }
+
+    public function activate(User $user): RedirectResponse
+    {
+        $user->update([
+            'deactivated_at' => null,
+        ]);
+
+        Inertia::flash('toast', ['type' => 'success', 'message' => __('User activated.')]);
 
         return to_route('users.index');
     }
