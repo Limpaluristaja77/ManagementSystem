@@ -1,21 +1,22 @@
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3';
-import { BookOpen, CalendarCheck, FolderGit2, LayoutGrid, RollerCoaster, TabletSmartphone, User } from '@lucide/vue';
+import { Link, usePage } from '@inertiajs/vue3';
+import {
+    BookOpen,
+    CalendarCheck,
+    FolderGit2,
+    LayoutGrid,
+    TabletSmartphone,
+    User,
+} from '@lucide/vue';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
-import {
-    Sidebar,
-    SidebarContent,
-    SidebarFooter,
-    SidebarHeader,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem,
-} from '@/components/ui/sidebar';
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
 import type { NavItem } from '@/types';
+
+const page = usePage();
 
 const mainNavItems: NavItem[] = [
     {
@@ -32,11 +33,13 @@ const mainNavItems: NavItem[] = [
         title: 'Users',
         href: '/users',
         icon: User,
+        visible: page.props.auth.is_superadmin,
     },
     {
         title: 'Roles',
         href: '/roles',
         icon: TabletSmartphone,
+        visible: page.props.auth.is_superadmin,
     },
 ];
 
