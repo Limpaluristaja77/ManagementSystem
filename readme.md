@@ -87,3 +87,17 @@ User:       user@gmail.com / password
 - Manager attendance approval/rejection
 - Mandatory reason for attendance changes
 - Attendance audit trail
+- Scheduled email reminders for missing daily check-in/check-out
+
+## Attendance Reminder Commands
+
+Send reminders manually:
+
+```bash
+php artisan attendance:send-missing-reminders check-in
+php artisan attendance:send-missing-reminders check-out
+```
+
+The scheduler sends missing check-in reminders at 10:00 and missing check-out reminders at 18:00.
+
+- Check logs at storage/logs/laravel.log
