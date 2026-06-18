@@ -7,6 +7,8 @@ Route::inertia('/', 'Welcome')->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'Dashboard')->name('dashboard');
+    Route::inertia('users', 'Users')->name('users.index');
+    Route::inertia('roles', 'Roles')->name('roles.index');
 
     Route::get('attendance', [AttendanceRecordController::class, 'index'])->name('attendance.index');
     Route::post('attendance/check-in', [AttendanceRecordController::class, 'checkIn'])->name('attendance.check-in');

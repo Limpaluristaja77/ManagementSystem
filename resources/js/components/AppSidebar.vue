@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, CalendarCheck, FolderGit2, LayoutGrid } from '@lucide/vue';
+import { BookOpen, CalendarCheck, FolderGit2, LayoutGrid, RollerCoaster, TabletSmartphone, User } from '@lucide/vue';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
@@ -27,6 +27,16 @@ const mainNavItems: NavItem[] = [
         title: 'Attendance',
         href: '/attendance',
         icon: CalendarCheck,
+    },
+    {
+        title: 'Users',
+        href: '/users',
+        icon: User,
+    },
+    {
+        title: 'Roles',
+        href: '/roles',
+        icon: TabletSmartphone,
     },
 ];
 

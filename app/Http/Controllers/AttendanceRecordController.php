@@ -39,7 +39,7 @@ class AttendanceRecordController extends Controller
             ->whereDate('work_date', today())
             ->first();
 
-        return Inertia::render('attendance/Index', [
+        return Inertia::render('Attendance', [
             'records' => $records,
             'todayRecord' => $todayRecord,
             'canApprove' => $canApprove,
