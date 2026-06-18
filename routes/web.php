@@ -18,6 +18,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('users/{user}/activate', [UserController::class, 'activate'])->name('users.activate');
 
         Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
+        Route::post('roles', [RoleController::class, 'store'])->name('roles.store');
+        Route::put('roles/{role}', [RoleController::class, 'update'])->name('roles.update');
+        Route::post('roles/{role}/deactivate', [RoleController::class, 'deactivate'])->name('roles.deactivate');
+        Route::post('roles/{role}/activate', [RoleController::class, 'activate'])->name('roles.activate');
     });
 
     Route::get('attendance', [AttendanceRecordController::class, 'index'])->name('attendance.index');
