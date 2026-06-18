@@ -12,7 +12,15 @@ import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import {
+    Sidebar,
+    SidebarContent,
+    SidebarFooter,
+    SidebarHeader,
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem,
+} from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
 import type { NavItem } from '@/types';
 
@@ -33,13 +41,13 @@ const mainNavItems: NavItem[] = [
         title: 'Users',
         href: '/users',
         icon: User,
-        visible: page.props.auth.is_superadmin,
+        visible: page.props.auth.permissions['users.view'],
     },
     {
         title: 'Roles',
         href: '/roles',
         icon: TabletSmartphone,
-        visible: page.props.auth.is_superadmin,
+        visible: page.props.auth.permissions['roles.view'],
     },
 ];
 
