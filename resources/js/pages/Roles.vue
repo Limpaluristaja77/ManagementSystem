@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { Head } from '@inertiajs/vue3';
+import { Pencil, Plus, RotateCcw, ShieldOff } from '@lucide/vue';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Head } from '@inertiajs/vue3';
-import { Pencil, Plus, RotateCcw, ShieldOff } from '@lucide/vue';
 
 type RolePermission = {
     id: number;
@@ -68,19 +68,30 @@ defineOptions({
                             <tr>
                                 <th class="px-3 py-2 font-medium">Role</th>
                                 <th class="px-3 py-2 font-medium">Users</th>
-                                <th class="px-3 py-2 font-medium">Permissions</th>
+                                <th class="px-3 py-2 font-medium">
+                                    Permissions
+                                </th>
                                 <th class="px-3 py-2 font-medium">Status</th>
                                 <th class="px-3 py-2 font-medium"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="role in roles" :key="role.id" class="border-t align-top">
-                                <td class="px-3 py-2 font-medium">{{ role.name }}</td>
-                                <td class="px-3 py-2">{{ role.users_count ?? 0 }}</td>
+                            <tr
+                                v-for="role in roles"
+                                :key="role.id"
+                                class="border-t align-top"
+                            >
+                                <td class="px-3 py-2 font-medium">
+                                    {{ role.name }}
+                                </td>
+                                <td class="px-3 py-2">
+                                    {{ role.users_count ?? 0 }}
+                                </td>
                                 <td class="px-3 py-2">
                                     <div class="flex max-w-xl flex-wrap gap-1">
                                         <Badge
-                                            v-for="permission in role.permissions ?? []"
+                                            v-for="permission in role.permissions ??
+                                            []"
                                             :key="permission.id"
                                             variant="outline"
                                         >
@@ -89,13 +100,27 @@ defineOptions({
                                     </div>
                                 </td>
                                 <td class="px-3 py-2">
-                                    <Badge :variant="role.is_active === false ? 'secondary' : 'default'">
-                                        {{ role.is_active === false ? 'Inactive' : 'Active' }}
+                                    <Badge
+                                        :variant="
+                                            role.is_active === false
+                                                ? 'secondary'
+                                                : 'default'
+                                        "
+                                    >
+                                        {{
+                                            role.is_active === false
+                                                ? 'Inactive'
+                                                : 'Active'
+                                        }}
                                     </Badge>
                                 </td>
                                 <td class="px-3 py-2">
                                     <div class="flex justify-end gap-2">
-                                        <Button size="sm" variant="outline" type="button">
+                                        <Button
+                                            size="sm"
+                                            variant="outline"
+                                            type="button"
+                                        >
                                             <Pencil />
                                             Edit
                                         </Button>
@@ -108,7 +133,12 @@ defineOptions({
                                             <RotateCcw />
                                             Activate
                                         </Button>
-                                        <Button v-else size="sm" variant="secondary" type="button">
+                                        <Button
+                                            v-else
+                                            size="sm"
+                                            variant="secondary"
+                                            type="button"
+                                        >
                                             <ShieldOff />
                                             Deactivate
                                         </Button>
@@ -116,7 +146,10 @@ defineOptions({
                                 </td>
                             </tr>
                             <tr v-if="roles.length === 0">
-                                <td class="px-3 py-8 text-center text-muted-foreground" colspan="5">
+                                <td
+                                    class="px-3 py-8 text-center text-muted-foreground"
+                                    colspan="5"
+                                >
                                     No roles found.
                                 </td>
                             </tr>
